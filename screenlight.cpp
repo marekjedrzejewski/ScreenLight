@@ -116,6 +116,7 @@ int main(int argc, char* args[])
 			     SDL_MapRGB(screen->format, r, g, b));
 
 		SDL_UpdateWindowSurface(window);
+		SDL_Delay(100);
 	}
 
 	SDL_DestroyWindow(window);
