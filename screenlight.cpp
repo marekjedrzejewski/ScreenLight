@@ -29,6 +29,13 @@ int main(int argc, char* args[])
 
 	SDL_Event e;
 
+	// BOOO! Evil goto!
+	screen_update:
+	SDL_FillRect(screen, NULL,
+		     SDL_MapRGB(screen->format, r, g, b));
+
+	SDL_UpdateWindowSurface(window);
+
 	while (!quit)
 	{
 		while (SDL_PollEvent( &e ) != 0)
@@ -45,56 +52,56 @@ int main(int argc, char* args[])
 					case SDLK_r:
 						if (r+speed >= 255) {
 							r = 255;
-							break;
+							goto screen_update;
 						}
 						else {
 							r += speed;
-							break;
+							goto screen_update;
 						}
 					case SDLK_e:
 						if (r-speed <= 0) {
 							r = 0;
-							break;
+							goto screen_update;
 						}
 						else {
 							r -= speed;
-							break;
+							goto screen_update;
 						}
 					case SDLK_g:
 						if (g+speed >= 255) {
 							g = 255;
-							break;
+							goto screen_update;
 						}
 						else {
 							g += speed;
-							break;
+							goto screen_update;
 						}
 					case SDLK_f:
 						if (g-speed <= 0) {
 							g = 0;
-							break;
+							goto screen_update;
 						}
 						else {
 							g -= speed;
-							break;
+							goto screen_update;
 						}
 					case SDLK_b:
 						if (b+speed >= 255) {
 							b = 255;
-							break;
+							goto screen_update;
 						}
 						else {
 							b += speed;
-							break;
+							goto screen_update;
 						}
 					case SDLK_v:
 						if (b-speed <= 0) {
 							b = 0;
-							break;
+							goto screen_update;
 						}
 						else {
 							b -= speed;
-							break;
+							goto screen_update;
 						}
 
 					// NUMBERS FOR SPEED
@@ -112,10 +119,6 @@ int main(int argc, char* args[])
 				}
 			}
 		}
-		SDL_FillRect(screen, NULL,
-			     SDL_MapRGB(screen->format, r, g, b));
-
-		SDL_UpdateWindowSurface(window);
 		SDL_Delay(100);
 	}
 
